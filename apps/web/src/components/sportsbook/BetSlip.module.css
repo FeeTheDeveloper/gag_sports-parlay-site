@@ -1,0 +1,185 @@
+.slip {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.count {
+  color: var(--color-gold-300);
+}
+
+.empty {
+  padding: 2rem 1.25rem;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 26rem;
+  overflow-y: auto;
+}
+
+.item {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.itemTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.itemLabel {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.itemMeta {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+}
+
+.itemOdds {
+  font-family: var(--font-mono);
+  color: var(--color-gold-300);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.remove {
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.15rem;
+  display: inline-flex;
+}
+
+.remove:hover {
+  color: var(--color-negative);
+}
+
+.stakeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.stakeInput {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-inset);
+}
+
+.stakeInput span {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.stakeInput input {
+  width: 4.5rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.stakeInput input:focus {
+  outline: none;
+}
+
+.toWin {
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.toWin strong {
+  color: var(--color-positive);
+}
+
+.totals {
+  padding: 1rem 1.1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.totalRow strong {
+  color: var(--color-text-primary);
+}
+
+.placeButton {
+  margin-top: 0.6rem;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-700));
+  color: var(--color-text-on-gold);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.placeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  padding: 0.85rem 1.1rem 1.1rem;
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.confirmation {
+  margin: 0 1.1rem 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-positive);
+  background: var(--color-bg-inset);
+  color: var(--color-text-primary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
