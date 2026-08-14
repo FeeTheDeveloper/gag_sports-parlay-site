@@ -4,7 +4,13 @@
       "Bash(npm run *)",
       "Bash(echo \"started with pid $!\")",
       "Bash(curl -s http://localhost:3000/)",
-      "Bash(netstat -ano)"
+      "Bash(netstat -ano)",
+      "Bash(curl -s -o /dev/null -w \"responsible-gambling: %{http_code}\\\\n\" http://localhost:4173/responsible-gambling)",
+      "Bash(curl -s -o /dev/null -w \"terms: %{http_code}\\\\n\" http://localhost:4173/terms)",
+      "Bash(curl -s -o /dev/null -w \"privacy: %{http_code}\\\\n\" http://localhost:4173/privacy)",
+      "Bash(curl -s -o /dev/null -w \"about: %{http_code}\\\\n\" http://localhost:4173/about)",
+      "Bash(curl -s -o /dev/null -w \"casino: %{http_code}\\\\n\" http://localhost:4173/casino)",
+      "Bash(powershell -NoProfile -Command \"Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,ProcessName\")"
     ]
   }
 }
