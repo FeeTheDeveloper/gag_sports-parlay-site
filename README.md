@@ -4,6 +4,24 @@
 
 This repository tracks the implementation direction for a modular sportsbook platform with expansion paths for casino and poker.
 
+## Repository Structure
+
+```text
+brand/            Logos, color tokens, and the visual style guide
+apps/web/          Next.js frontend: app shell, header, balance display, account drawer, route modules
+services/          One package per backend service described below
+  odds-ingestion/
+  betting-engine/
+  wallet-ledger/
+  identity-kyc/
+  promotions/
+  cms/
+```
+
+Each `services/*` package README links back to the relevant bullet below. All
+services are scaffolding only right now — see [Phase 0](#phase-0-compliance-foundation)
+before any of them should hold real logic or handle real funds.
+
 ### Architecture
 
 #### Frontend
