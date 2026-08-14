@@ -9,7 +9,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.top}>
         <div className={styles.brand}>
-          <span>GOOD AZ GOLD</span>
+          <span className={styles.brandMark}>GOOD AZ GOLD</span>
           <p className={styles.tagline}>
             A modular sportsbook, casino, and poker platform being built
             compliance-first — licensing, KYC, and responsible-gambling

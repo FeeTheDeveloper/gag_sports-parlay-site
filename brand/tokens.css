@@ -30,4 +30,13 @@
   --radius-md: 8px;
   --radius-lg: 16px;
   --radius-pill: 999px;
+
+  --gradient-gold: linear-gradient(135deg, var(--color-gold-300), var(--color-gold-500) 55%, var(--color-gold-700));
+  --gradient-gold-hover: linear-gradient(135deg, var(--color-gold-100), var(--color-gold-400) 55%, var(--color-gold-500));
+  --gradient-hairline: linear-gradient(90deg, transparent, var(--color-gold-700) 50%, transparent);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 28px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 28px 70px -24px rgba(0, 0, 0, 0.7);
+  --shadow-gold: 0 0 0 1px rgba(212, 175, 55, 0.22), 0 16px 40px -16px rgba(212, 175, 55, 0.28);
 }

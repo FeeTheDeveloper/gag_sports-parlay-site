@@ -9,11 +9,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3.75rem;
+  height: 3.75rem;
   border-radius: var(--radius-lg);
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-gold-700);
+  box-shadow: var(--shadow-gold);
   color: var(--color-gold-300);
   margin-bottom: 1.5rem;
 }
@@ -32,8 +33,9 @@
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  font-weight: 800;
+  font-size: 2.15rem;
+  margin-bottom: 0.85rem;
 }
 
 .body {
