@@ -1,82 +1,127 @@
-# gag_sports-parlay-site
+# GAG Sports — Parlay Site
 
-## Build Roadmap
+A full-stack sports-betting platform built with **Next.js 16 (App Router)**, TypeScript, and Tailwind CSS.
 
-This repository tracks the implementation direction for a modular sportsbook platform with expansion paths for casino and poker.
+---
 
-### Architecture
+## Architecture Overview
 
-#### Frontend
-- Component-based SPA with a persistent app shell:
-  - Header/navigation
-  - Balance display
-  - Account drawer
-- Route-based module loading for:
-  - Sportsbook
-  - Casino
-  - Poker
+### Frontend — Component-Based SPA
 
-#### Backend Services
-- Odds ingestion and normalization service
-- Bet slip, pricing, and settlement service
-- Wallet and ledger service
-- Identity and KYC service
-- Promotions and bonus rollover service
-- CMS/content service for promo banners and events feed
+| Layer | Details |
+|-------|---------|
+| Framework | Next.js 16 App Router (React 19) |
+| App Shell | Persistent `Header` with balance display + `AccountDrawer` slide-in panel |
+| Route modules | `/sportsbook`, `/casino`, `/poker` — each loaded as a separate route segment |
+| Real-time | `useLiveOdds` hook consumes the `/api/events` Server-Sent Events endpoint |
+| Bet Slip | Client-side component with straight / parlay / teaser pricing preview |
 
-#### Data Layer
-- Append-only (event-sourced) money ledger for:
-  - Deposits
-  - Wagers
-  - Grades
-  - Payouts
-  - Bonus credits
-- All balances must be reconstructable and auditable for compliance and dispute handling.
+### Backend Services (API Routes)
 
-#### Real-Time Layer
-- WebSocket or SSE channel for:
-  - Live odds updates
-  - In-play line movement
+| Route | Responsibility |
+|-------|---------------|
+| `GET /api/odds` | Odds ingestion & normalization (American → decimal, vig removal) |
+| `POST /api/bets` | Bet slip placement + pricing/settlement |
+| `GET/POST /api/wallet` | Wallet / append-only ledger entries |
+| `GET/POST /api/kyc` | Identity / KYC submission stub |
+| `GET/POST /api/promotions` | Promotions & bonus-rollover engine |
+| `GET /api/events` | Server-Sent Events for live odds updates |
 
-#### External Integrations
-- Licensed odds-feed provider
-- Gaming-capable payment processor
-- KYC/identity verification vendor
-- Casino game content aggregator (if games are not built in-house)
+### Data Layer — Append-Only Ledger
 
-## Phased Implementation Plan
+`src/lib/ledger/index.ts` implements the core of an **event-sourced / append-only ledger**:
 
-### Phase 0: Compliance Foundation
-- Select licensing jurisdiction(s)
-- Establish legal and compliance controls
-- Integrate KYC/AML provider
-- Implement responsible-gambling requirements
-- Finalize payment processing for gaming use cases
+- Every money movement (deposit, wager, grade, payout, bonus credit) is a `LedgerEntry`
+- `balanceBefore` + `amount` → `balanceAfter` is stored on each entry
+- `reconstructBalance(entries)` rebuilds any balance from the event log alone
+- This makes every balance **auditable and reconstructable** — required for compliance and dispute resolution
 
-### Phase 1: Platform Core
-- Build identity/account foundation
-- Build wallet and append-only ledger core
-- Deliver account shell experience (global account and balance state)
+### Real-Time Layer
 
-### Phase 2: Sportsbook MVP
-- Launch with:
-  - One sport
-  - Straight bets only
-  - Odds feed integration
-  - Settlement flow
-  - Basic risk limits
+`GET /api/events` is a **Server-Sent Events** (SSE) endpoint. The `useLiveOdds` React hook connects to it and maintains a live odds map keyed by `lineId`, allowing in-place price updates without page reloads.
 
-### Phase 3: Sports Expansion
-- Add parlay, teaser, and props support
-- Expand sports/leagues coverage
-- Harden real-time/live odds infrastructure
+---
 
-### Phase 4: Content Expansion
-- Integrate casino and poker via aggregator embed
+## Module Layout
 
-### Phase 5: Retention and Scale
-- Promotions and bonus rollover engine
-- Localization support
-- Segmentation and retention tooling
-- Advanced in-play/live betting capabilities
-- Analytics and fraud detection enhancements
+```
+src/
+├── app/
+│   ├── layout.tsx              # Persistent app shell (Header)
+│   ├── page.tsx                # Home / lobby
+│   ├── sportsbook/page.tsx     # Sportsbook module
+│   ├── casino/page.tsx         # Casino module
+│   ├── poker/page.tsx          # Poker module
+│   ├── promotions/page.tsx     # Promotions & promo-code redemption
+│   ├── responsible-gaming/     # RG page
+│   └── api/
+│       ├── odds/route.ts       # Odds feed
+│       ├── bets/route.ts       # Bet placement
+│       ├── wallet/route.ts     # Ledger / wallet
+│       ├── kyc/route.ts        # KYC stub
+│       ├── promotions/route.ts # Promos engine
+│       └── events/route.ts     # SSE live odds
+├── components/
+│   ├── shell/
+│   │   ├── Header.tsx
+│   │   └── AccountDrawer.tsx
+│   ├── betslip/BetSlip.tsx
+│   └── sportsbook/EventCard.tsx
+├── lib/
+│   ├── ledger/index.ts         # Append-only ledger logic
+│   ├── odds/index.ts           # Odds normalization
+│   ├── betslip/index.ts        # Pricing & settlement
+│   ├── kyc/index.ts            # KYC guard
+│   └── promotions/index.ts     # Bonus / rollover engine
+├── hooks/
+│   └── useLiveOdds.ts          # SSE subscription hook
+├── types/index.ts              # Canonical domain types
+└── __tests__/                  # Unit tests (Jest)
+    ├── odds.test.ts
+    ├── betslip.test.ts
+    ├── ledger.test.ts
+    └── promotions.test.ts
+```
+
+---
+
+## Phased Roadmap
+
+| Phase | Milestone |
+|-------|-----------|
+| 1 | **Compliance foundation** — licensing jurisdiction, KYC vendor integration (Persona/Jumio/Onfido), responsible-gambling deposit-limit enforcement, payment processor |
+| 2 | **Wallet / ledger core** — persist `LedgerEntry` to a real append-only database table; account authentication |
+| 3 | **Sportsbook MVP** — straight bets on one sport, live odds-feed provider integration, settlement pipeline |
+| 4 | **Expand bet types** — parlays, teasers, props; additional sports coverage |
+| 5 | **Casino / Poker** — embed casino-game content via aggregator SDK; poker table engine |
+| 6 | **Growth features** — promotions engine, bonus/rollover tracking, localization, full live/in-play betting |
+
+---
+
+## Getting Started
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm test           # run unit tests
+npm run build      # production build
+```
+
+---
+
+## Key Integrations (to source)
+
+- **Odds feed** — licensed provider (e.g. Sportradar, Genius Sports)
+- **Payments** — high-risk / gaming-experienced processor (e.g. Paysafe, NuveiSports)
+- **KYC / Identity** — vendor SDK (e.g. Persona, Jumio, Onfido)
+- **Casino content** — aggregator (e.g. SoftSwiss, Slotegrator)
+- **Database** — append-only ledger table (PostgreSQL with INSERT-only permissions on ledger rows, or an event-store)
+
+---
+
+## Responsible Gambling
+
+18+ only. If you or someone you know has a gambling problem:
+
+- **National Council on Problem Gambling**: 1-800-522-4700 · ncpgambling.org
+- **Gambling Therapy**: gamblingtherapy.org
