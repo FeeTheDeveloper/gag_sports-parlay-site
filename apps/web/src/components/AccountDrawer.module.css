@@ -1,10 +1,14 @@
 .trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   border: 1px solid var(--color-gold-700);
   background: transparent;
   color: var(--color-text-primary);
   border-radius: var(--radius-md);
   padding: 0.4rem 0.9rem;
   font-family: var(--font-body);
+  font-size: 0.9rem;
   cursor: pointer;
 }
 

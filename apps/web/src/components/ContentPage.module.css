@@ -1,0 +1,59 @@
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5rem;
+}
+
+.eyebrow {
+  color: var(--color-gold-300);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+.wrap :global(h2) {
+  font-size: 1.15rem;
+  margin: 2rem 0 0.6rem;
+}
+
+.wrap :global(p) {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.wrap :global(strong) {
+  color: var(--color-text-primary);
+}
+
+.wrap :global(ul) {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.wrap :global(a) {
+  color: var(--color-gold-300);
+}
+
+.callout {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gold-700);
+  background: var(--color-bg-elevated);
+}
+
+.callout :global(p) {
+  margin: 0;
+}

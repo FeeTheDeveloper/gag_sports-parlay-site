@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
+import { Spade } from "lucide-react";
+import { ModulePlaceholder } from "@/components/ModulePlaceholder";
+
+export const metadata: Metadata = { title: "Poker" };
+
 export default function PokerPage() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Poker</h1>
-      <p>Aggregator embed lands here in Phase 4.</p>
-    </div>
+    <ModulePlaceholder
+      icon={Spade}
+      phase="Phase 4 · Planned"
+      title="Poker"
+      body="Cash games and tournaments through the same aggregator embed as casino, launching alongside it in Phase 4."
+    />
   );
 }
