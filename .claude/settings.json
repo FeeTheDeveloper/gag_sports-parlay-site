@@ -10,7 +10,8 @@
       "Bash(curl -s -o /dev/null -w \"privacy: %{http_code}\\\\n\" http://localhost:4173/privacy)",
       "Bash(curl -s -o /dev/null -w \"about: %{http_code}\\\\n\" http://localhost:4173/about)",
       "Bash(curl -s -o /dev/null -w \"casino: %{http_code}\\\\n\" http://localhost:4173/casino)",
-      "Bash(powershell -NoProfile -Command \"Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,ProcessName\")"
+      "Bash(powershell -NoProfile -Command \"Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,ProcessName\")",
+      "PowerShell(Get-NetTCPConnection -LocalPort 4173 -ErrorAction SilentlyContinue)"
     ]
   }
 }
