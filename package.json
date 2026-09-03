@@ -2,6 +2,10 @@
   "name": "gag-sports-parlay-site",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

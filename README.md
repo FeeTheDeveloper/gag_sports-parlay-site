@@ -4,6 +4,30 @@ A full-stack sports-betting platform built with **Next.js 16 (App Router)**, Typ
 
 ---
 
+## Repository Structure
+
+```text
+brand/            Logos, color tokens, and the visual style guide
+apps/web/          Next.js frontend: app shell, header, balance display, account drawer, route modules
+services/          One package per backend service described below
+  odds-ingestion/
+  betting-engine/
+  wallet-ledger/
+  identity-kyc/
+  promotions/
+  cms/
+```
+
+Each `services/*` package README links back to the relevant bullet below. All
+services are scaffolding only right now — see [Phase 0](#phase-0-compliance-foundation)
+before any of them should hold real logic or handle real funds.
+
+### Architecture
+
+The repository contains the root application described below plus the workspace
+scaffolding under `apps/web/` and `services/`. The workspace packages provide
+the modular expansion path; the root app is the current implemented MVP.
+
 ## Architecture Overview
 
 ### Frontend — Component-Based SPA
